@@ -1,0 +1,48 @@
+def merge(S, L, R):
+    k=0
+    
+    while 0 < len(L) and 0 < len(R):
+        if L[0] <= R[0]:
+            S[k] = L.pop(0)
+        else:
+            S[k] = R.pop(0)
+        k += 1
+
+    while len(L) != 0:
+        S[k] = L.pop(0)
+        k += 1
+
+    while len(R) != 0:
+        S[k] = R.pop(0)
+        k += 1
+
+
+def merge_sort(S):
+    if len(S) > 1:
+        mid = len(S) // 2
+        L = S[:mid]
+        R = S[mid:]
+
+        merge_sort(L)
+        merge_sort(R)
+
+        merge(S, L, R)
+    return S
+
+n=int(input("Enter the number of Employee: "))
+salary = list(map(int,input("Original Salaries:\n").split()))
+if(len(salary) == n):
+
+    sorted_salary = merge_sort(salary)
+
+    print("\nSorted Salaries:")
+
+    for j in sorted_salary:
+        print(j)
+    
+    print(f"Lowest Salary {sorted_salary[0]}")
+    print(f"Highest Salary {sorted_salary[-1]}") 
+
+    print(f"Salary Range: {sorted_salary[-1] - sorted_salary[0]}")
+else:
+    print("Number of Salaries is not equal to the Number of Person")

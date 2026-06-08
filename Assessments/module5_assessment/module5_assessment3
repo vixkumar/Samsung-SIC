@@ -1,0 +1,48 @@
+def merge(S, L, R):
+    k=0
+    
+    while 0 < len(L) and 0 < len(R):
+        if L[0] <= R[0]:
+            S[k] = L.pop(0)
+        else:
+            S[k] = R.pop(0)
+        k += 1
+
+    while len(L) != 0:
+        S[k] = L.pop(0)
+        k += 1
+
+    while len(R) != 0:
+        S[k] = R.pop(0)
+        k += 1
+
+
+def merge_sort(S):
+    if len(S) > 1:
+        mid = len(S) // 2
+        L = S[:mid]
+        R = S[mid:]
+
+        merge_sort(L)
+        merge_sort(R)
+
+        merge(S, L, R)
+    return S
+
+
+transactions = list(map(int,input("Original Transactions:\n").split()))
+for i in transactions:
+
+    sorted_transaction = merge_sort(transactions)
+
+    print("\nSorted Transactions:")
+
+    for j in sorted_transaction:
+        print(j)
+    
+    print(f"Lowest transaction {sorted_transaction[0]}")
+    print(f"Highest transaction {sorted_transaction[-1]}") 
+
+else:
+    print("Number of Transactions is not equal to the Number of Person")
+    
