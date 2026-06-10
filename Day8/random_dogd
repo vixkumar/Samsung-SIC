@@ -1,0 +1,6 @@
+import random
+
+dog_list = ("Labrador", "German Shepard", "Bulldog", "Beagle", "yorkie")
+my_choice = random.choice(list)
+my_choice1=random.sample(dog_list,2)
+print(my_choice1)
